@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DigLayer3DData" load_steps=2 format=3 uid="uid://layerash01"]
+
+[ext_resource type="Script" path="res://resources/dig_layer_3d_data.gd" id="1_ash"]
+
+[resource]
+script = ExtResource("1_ash")
+layer_name = "Слой серого пепла"
+hits_required = 3
+particle_color = Color(0.32, 0.30, 0.28, 1)

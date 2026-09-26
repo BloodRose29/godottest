@@ -1,0 +1,201 @@
+[gd_scene load_steps=19 format=3 uid="uid://level_main01"]
+
+[ext_resource type="PackedScene" uid="uid://b6player3d01" path="res://scenes/Player3D.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://c3q8pit3d9lk" path="res://scenes/DigPit3D.tscn" id="2_digpit"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="3_hud"]
+[ext_resource type="Shader" path="res://shaders/psx_post_process.gdshader" id="4_postfx"]
+[ext_resource type="Resource" uid="uid://layerash01" path="res://resources/layers/layer_ash.tres" id="5_ash"]
+[ext_resource type="Resource" uid="uid://layerroots01" path="res://resources/layers/layer_roots.tres" id="6_roots"]
+[ext_resource type="Resource" uid="uid://layerflesh01" path="res://resources/layers/layer_flesh.tres" id="7_flesh"]
+[ext_resource type="Resource" uid="uid://layerashdeep01" path="res://resources/layers/layer_ash_deep.tres" id="8_ashdeep"]
+
+[sub_resource type="Environment" id="Environment_dream"]
+background_mode = 2
+sky_custom_fov = 0.0
+ambient_light_source = 3
+ambient_light_color = Color(0.16, 0.17, 0.22, 1)
+ambient_light_energy = 0.6
+fog_enabled = true
+fog_light_color = Color(0.15, 0.16, 0.20, 1)
+fog_density = 0.035
+fog_sky_affect = 0.6
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 0.35
+glow_bloom = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_postfx"]
+shader = ExtResource("4_postfx")
+shader_parameter/color_steps = 20.0
+shader_parameter/dither_strength = 0.25
+shader_parameter/vignette_intensity = 0.7
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+size = Vector2(30, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.13, 0.14, 0.10, 1)
+roughness = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(30, 0.2, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+size = Vector3(30, 3, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall"]
+albedo_color = Color(0.09, 0.08, 0.07, 1)
+roughness = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall"]
+size = Vector3(30, 3, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.12, 0.10, 0.10, 0.7)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.55, 0.15, 0.18, 0.9)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dream")
+
+[node name="MoonLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7, -0.5, 0.5, 0, 0.7, 0.7, -0.7, -0.5, 0.5, 0, 8, 0)
+light_color = Color(0.55, 0.58, 0.75, 1)
+light_energy = 0.55
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_ground")
+surface_material_override/0 = SubResource("StandardMaterial3D_ground")
+
+[node name="GroundCollision" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_ground")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="WallNorth" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -15)
+collision_layer = 1
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/WallNorth"]
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
+
+[node name="Collision" type="CollisionShape3D" parent="Walls/WallNorth"]
+shape = SubResource("BoxShape3D_wall")
+
+[node name="WallSouth" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 15)
+collision_layer = 1
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/WallSouth"]
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
+
+[node name="Collision" type="CollisionShape3D" parent="Walls/WallSouth"]
+shape = SubResource("BoxShape3D_wall")
+
+[node name="WallEast" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15, 1.5, 0)
+collision_layer = 1
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/WallEast"]
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
+
+[node name="Collision" type="CollisionShape3D" parent="Walls/WallEast"]
+shape = SubResource("BoxShape3D_wall")
+
+[node name="WallWest" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, 1.5, 0)
+collision_layer = 1
+
+[node name="Mesh" type="MeshInstance3D" parent="Walls/WallWest"]
+mesh = SubResource("BoxMesh_wall")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
+
+[node name="Collision" type="CollisionShape3D" parent="Walls/WallWest"]
+shape = SubResource("BoxShape3D_wall")
+
+[node name="Player3D" parent="." instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="DigPits" type="Node3D" parent="."]
+
+[node name="DigPit_Main" parent="DigPits" instance=ExtResource("2_digpit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+layers = Array[Resource("res://resources/dig_layer_3d_data.gd")]([ExtResource("5_ash"), ExtResource("6_roots"), ExtResource("7_flesh")])
+
+[node name="DigPit_Side" parent="DigPits" instance=ExtResource("2_digpit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+layers = Array[Resource("res://resources/dig_layer_3d_data.gd")]([ExtResource("5_ash"), ExtResource("6_roots")])
+
+[node name="DigPit_Far" parent="DigPits" instance=ExtResource("2_digpit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+layers = Array[Resource("res://resources/dig_layer_3d_data.gd")]([ExtResource("5_ash"), ExtResource("8_ashdeep")])
+
+[node name="PostFX" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="PostFX"]
+material = SubResource("ShaderMaterial_postfx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_hud")
+
+[node name="Margin" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="HUD/Margin"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="DreamLabel" type="Label" parent="HUD/Margin/VBox"]
+layout_mode = 2
+text = "Глубина сна: 0%"
+theme_override_colors/font_color = Color(0.85, 0.82, 0.78, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="DreamBar" type="ProgressBar" parent="HUD/Margin/VBox"]
+custom_minimum_size = Vector2(240, 14)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+max_value = 100.0
+value = 0.0
+show_percentage = false
+
+[node name="ItemLabel" type="Label" parent="HUD/Margin/VBox"]
+layout_mode = 2
+text = ""
+theme_override_colors/font_color = Color(0.8, 0.7, 0.5, 1)
+theme_override_font_sizes/font_size = 16

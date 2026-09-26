@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bo0lpq4356m83"]
+
+[ext_resource type="Script" uid="uid://cu6i85bx8lgbg" path="res://script/main_menu.gd" id="1_87ipw"]
+[ext_resource type="Shader" uid="uid://cy0443l21v1qk" path="res://Scene/main_menu.gdshader" id="2_hii65"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1spcv"]
+shader = ExtResource("2_hii65")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wtrr6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 350, 1)
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(1, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, -5, 0)
+scale_min = 1.5
+scale_max = 3.5
+color = Color(0.5469593, 0.7489716, 0.92614055, 1)
+
+[node name="MainMenu" type="Control" unique_id=1370077038]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_87ipw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1931442571]
+material = SubResource("ShaderMaterial_1spcv")
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 643.0
+scale = Vector2(1.1200001, 1.2799999)
+color = Color(0.078431375, 0.09411765, 0.16078432, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=156378466]
+position = Vector2(578, 324)
+amount = 40
+lifetime = 5.0
+preprocess = 3.0
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_wtrr6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1894679668]
+layout_mode = 0
+offset_left = 381.0
+offset_top = 166.99997
+offset_right = 636.0
+offset_bottom = 318.99997
+scale = Vector2(1.4800012, 1.4799994)
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=8489162]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Bouncy sleep"
+horizontal_alignment = 1
+justification_flags = 161
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=629742232]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Играть"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer" unique_id=1015309987]
+layout_mode = 2
+text = "Выход
+"

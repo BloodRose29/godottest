@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DigLayer3DData" load_steps=3 format=3 uid="uid://layerashdeep01"]
+
+[ext_resource type="Script" path="res://resources/dig_layer_3d_data.gd" id="1_ashd"]
+[ext_resource type="Resource" uid="uid://itemdoll01" path="res://resources/items/item_doll.tres" id="2_dl"]
+
+[resource]
+script = ExtResource("1_ashd")
+layer_name = "Слой мёрзлого дёрна"
+hits_required = 4
+particle_color = Color(0.36, 0.34, 0.40, 1)
+unlocked_item = ExtResource("2_dl")

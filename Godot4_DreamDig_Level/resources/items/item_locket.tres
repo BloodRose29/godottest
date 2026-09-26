@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://itemlocket01"]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_lok"]
+
+[resource]
+script = ExtResource("1_lok")
+id = "rusty_locket"
+item_name = "Ржавый медальон"
+surreal_description = "Внутри — фотография лица, которого не существует. Оно меняется, если долго смотреть."
+flavor_quote = "\"Это не моё. Но почему-то знакомое.\""
+target_npc_id = "marfa"
+dream_shift_amount = 15

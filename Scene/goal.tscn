@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://csyqundjfdgkc"]
+
+[ext_resource type="Texture2D" uid="uid://cn2q0ld7kkv3h" path="res://assets/Clock.png" id="1_ifj1m"]
+[ext_resource type="Script" uid="uid://bpmjwxx5hjs8s" path="res://script/goal.gd" id="1_lj743"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtrr6"]
+
+[node name="Goal" type="Area2D" unique_id=2105890776]
+script = ExtResource("1_lj743")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187633581]
+shape = SubResource("CircleShape2D_wtrr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1527207947]
+position = Vector2(0, -7.450581e-09)
+scale = Vector2(0.01928711, 0.01928711)
+texture = ExtResource("1_ifj1m")

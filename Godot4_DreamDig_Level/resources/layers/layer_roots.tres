@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DigLayer3DData" load_steps=3 format=3 uid="uid://layerroots01"]
+
+[ext_resource type="Script" path="res://resources/dig_layer_3d_data.gd" id="1_rts"]
+[ext_resource type="Resource" uid="uid://itemlocket01" path="res://resources/items/item_locket.tres" id="2_lok"]
+
+[resource]
+script = ExtResource("1_rts")
+layer_name = "Слой чёрных корней"
+hits_required = 4
+particle_color = Color(0.10, 0.08, 0.07, 1)
+unlocked_item = ExtResource("2_lok")

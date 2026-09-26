@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://itembonekey01"]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_bk"]
+
+[resource]
+script = ExtResource("1_bk")
+id = "bone_key"
+item_name = "Костяной ключ"
+surreal_description = "Тёплый на ощупь, будто его только что вынули из чьей-то руки."
+flavor_quote = "\"Дверь была здесь ещё до дома.\""
+target_npc_id = "boatman"
+dream_shift_amount = 25

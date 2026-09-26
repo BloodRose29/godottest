@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DigLayer3DData" load_steps=3 format=3 uid="uid://layerflesh01"]
+
+[ext_resource type="Script" path="res://resources/dig_layer_3d_data.gd" id="1_fls"]
+[ext_resource type="Resource" uid="uid://itembonekey01" path="res://resources/items/item_bone_key.tres" id="2_bk"]
+
+[resource]
+script = ExtResource("1_fls")
+layer_name = "Слой сырой плоти"
+hits_required = 5
+particle_color = Color(0.42, 0.08, 0.08, 1)
+unlocked_item = ExtResource("2_bk")

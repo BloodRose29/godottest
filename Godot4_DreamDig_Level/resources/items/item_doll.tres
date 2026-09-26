@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://itemdoll01"]
+
+[ext_resource type="Script" path="res://resources/item_data.gd" id="1_dl"]
+
+[resource]
+script = ExtResource("1_dl")
+id = "straw_doll"
+item_name = "Соломенная кукла"
+surreal_description = "У неё нет лица, но кажется, что она знает, куда ты идёшь."
+flavor_quote = "\"Кузнец делал таких перед каждой зимой.\""
+target_npc_id = "blacksmith"
+dream_shift_amount = 20
